@@ -86,6 +86,22 @@ func getSupportedRegistry(ob algo.OutputBuilder) registry {
 		/*
 		 * PLACEHOLDER - POINT MORE DISTRO VERSIONS
 		 */
+		debianDistro := "Debian GNU/Linux 10 (buster)"
+		addBundleInstaller(debianDistro, "v1.21.*", &algo.Debian10K8s1_22{})
+		addBundleInstaller(debianDistro, "v1.22.*", &algo.Debian10K8s1_22{})
+		addBundleInstaller(debianDistro, "v1.23.*", &algo.Debian10K8s1_22{})
+
+		/*
+		 * PLACEHOLDER - ADD MORE K8S VERSIONS HERE
+		 */
+
+		// Match any patch version of the specified Major & Minor K8s version
+		reg.AddK8sFilter("v1.21.*")
+		reg.AddK8sFilter("v1.22.*")
+		reg.AddK8sFilter("v1.23.*")
+
+		// Match concrete os version to repository os version
+		reg.AddOsFilter("Debian*Linux*10*", linuxDistro)
 	}
 
 	/*
